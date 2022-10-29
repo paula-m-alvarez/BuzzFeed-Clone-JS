@@ -85,6 +85,9 @@ const questions = [
     }
 ]
 
+const unansweredQuestions = []
+const chosenAnswers = []
+
 const populateQuestions = () => {
     questions.forEach(question => {
         const titleBlock = document.createElement('div')
@@ -101,10 +104,12 @@ const populateQuestions = () => {
         answersBlock.id = question.id + "-questions"
         answersBlock.classList.add("answer-options")
 
+        unansweredQuestions.push(question.id)
+
         question.answers.forEach(answer => {
             const answerBlock = document.createElement('div')
             answerBlock.classList.add("answer-block")
-            answerBlock.addEventListener('click', () => handleClick)
+            answerBlock.addEventListener('click', () => handleClick(question.id, answer.text))
 
             const answerImage = document.createElement('img')
             answerImage.setAttribute("src", answer.image)
@@ -128,6 +133,13 @@ const populateQuestions = () => {
 
 populateQuestions()
 
-const handleClick = () => {
-    console.log("click")
+const handleClick = (questionId, chosenAnswer) => {
+    if (unansweredQuestions.includes(questionId) )
+    chosenAnswers.push(chosenAnswer)
+    const itemToRemove = unansweredQuestions.indexOf(questionId)
+
+    if (itemToRemove > -1) {
+        unansweredQuestions.splice(itemToRemove)
+    }
+    
 }
