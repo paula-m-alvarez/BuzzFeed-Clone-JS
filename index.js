@@ -91,8 +91,41 @@ const populateQuestions = () => {
         titleBlock.id = question.id
         titleBlock.classList.add('title-block')
 
+        const tilteHeading = document.createElement('h2')
+        tilteHeading.textContent = question.text
+        titleBlock.append(tilteHeading)
+
         questionDisplay.append(titleBlock)
+
+        const answersBlock = document.createElement('div')
+        answersBlock.id = question.id + "-questions"
+        answersBlock.classList.add("answer-options")
+
+        question.answers.forEach(answer => {
+            const answerBlock = document.createElement('div')
+            answerBlock.classList.add("answer-block")
+            answerBlock.addEventListener('click', handleClick)
+
+            const answerImage = document.createElement('img')
+            answerImage.setAttribute("src", answer.image)
+            answerImage.setAttribute("alt", answer.alt)
+
+            const answerTitle = document.createElement("h3")
+            answerTitle.textContent = answer.text
+
+
+            answerBlock.append(answerImage,answerTitle)
+
+        })
+
+        questionDisplay.append(answersBlock)
+
+
     })
 }
 
 populateQuestions()
+
+const handleClick = () => {
+    console.log("click")
+}
