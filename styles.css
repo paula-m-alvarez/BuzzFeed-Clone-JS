@@ -7,7 +7,7 @@ body {
     justify-content: center;
 }
 
-sections {
+section {
     width: 600px;
 }
 
@@ -43,7 +43,7 @@ p {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 16px 0 23 px 0;
+    margin: 16px 0 23px 0;
 }
 
 .answer-block {
@@ -53,6 +53,5 @@ p {
     box-shadow: rgba(0,0,0, 0.07) 0 0 0 1px;
     text-align: center;
     margin-bottom: 15px;
-    overflow: hidden;;
-
+    overflow: hidden;
 }

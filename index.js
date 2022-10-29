@@ -104,7 +104,7 @@ const populateQuestions = () => {
         question.answers.forEach(answer => {
             const answerBlock = document.createElement('div')
             answerBlock.classList.add("answer-block")
-            answerBlock.addEventListener('click', handleClick)
+            answerBlock.addEventListener('click', () => handleClick)
 
             const answerImage = document.createElement('img')
             answerImage.setAttribute("src", answer.image)
@@ -114,7 +114,9 @@ const populateQuestions = () => {
             answerTitle.textContent = answer.text
 
 
-            answerBlock.append(answerImage,answerTitle)
+            answerBlock.append(answerImage, answerTitle)
+
+            answersBlock.append(answerBlock)
 
         })
 
