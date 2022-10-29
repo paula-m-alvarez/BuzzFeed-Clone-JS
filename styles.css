@@ -55,3 +55,8 @@ p {
     margin-bottom: 15px;
     overflow: hidden;
 }
+
+.answer-block img {
+    width: 286px;
+    height: 250px;
+}
