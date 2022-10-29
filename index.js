@@ -169,7 +169,7 @@ const handleClick = (questionId, chosenAnswer) => {
         unansweredQuestions.splice(itemToRemove)
     }
 
-    // disableQuestionBlock(questionId, chosenAnswer)
+    disableQuestionBlock(questionId, chosenAnswer)
 
     const lowestQuestionId = Math.min(...unansweredQuestions)
     location.href = '#' + lowestQuestionId
@@ -190,7 +190,8 @@ const showAnswer = () => {
             chosenAnswers.includes(answer.combination[2])
         ) {
             result = answer
-        } else {
+            return
+        } else if (!result) {
             result = answers[0]
         }
     })
@@ -208,4 +209,18 @@ const showAnswer = () => {
     answerBlock.append(answerTitle, answerImage)
 
     answerDisplay.append(answerBlock)
+
+    const allAnswerBlocks = document.querySelectorAll('.answer-block')
+    Array.from(allAnswerBlocks).forEach(answerBlock => answerBlock.replaceWith(answerBlock.cloneNode(true)))
+}
+
+const disableQuestionBlock = (questionId, chosenAnswer ) => {
+    const currentQuestionBlock = document.getElementById(questionId + "-questions")
+
+    Array.from(currentQuestionBlock.children).forEach(block => {
+        if (block.children.item(1).innerText !== chosenAnswer) {
+            block.style.opacity = "50%"
+        }
+    })
+
 }
