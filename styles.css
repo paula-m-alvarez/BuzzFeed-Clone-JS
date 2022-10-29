@@ -29,6 +29,7 @@ h3 {
 p {
     font-size: 1.125rem;
     line-height: 1.2;
+    margin-bottom: 1rem;
 }
 
 .title-block {
@@ -63,4 +64,10 @@ p {
 .answer-block img {
     width: 286px;
     height: 250px;
+}
+
+.result-block {
+    width: 600px;
+    background-color: rgb(255,62,158);
+    border-radius: 5px;
 }

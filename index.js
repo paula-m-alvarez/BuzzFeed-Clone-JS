@@ -5,7 +5,7 @@ const answerDisplay = document.querySelector("#answer");
 const questions = [
     {
         id: 0,
-        text: "Pick a vacation destinations:",
+        text: "Pick a place:",
         answers: [
             {
                 text: "Mendoza",
@@ -85,6 +85,33 @@ const questions = [
     }
 ]
 
+const answers = [
+    {
+        combination: ["Mendoza", "Pizza", "Tradicional" ],
+        text: "Queso Roquefort",
+        image: "https://i.blogs.es/a7e81d/istock-861963944/840_560.jpg",
+        alt: "Queso Roquefort"
+    },
+    {
+        combination: ["Salta", "Sushi", "Casa Moderna" ],
+        text: "Queso Cheddar",
+        image: "https://infoqueso.com/wp-content/uploads/2020/05/queso-cheddar.jpg",
+        alt: "Queso Cheddar"
+    },
+    {
+        combination: ["Bariloche", "Tequeños", "Departamento" ],
+        text: "Queso Brie",
+        image: "https://www.cucinare.tv/wp-content/uploads/2019/05/Brie.jpg",
+        alt: "Queso Brie"
+    },
+    {
+        combination: ["Tierra del Fuego", "Papas fritas", "Cabaña" ],
+        text: "Queso Halloumi ",
+        image: "https://vinomanos.com/wp-content/uploads/2020/03/Halloumi.jpg",
+        alt: "Queso Halloumi "
+    }
+]
+
 const unansweredQuestions = []
 const chosenAnswers = []
 
@@ -141,5 +168,44 @@ const handleClick = (questionId, chosenAnswer) => {
     if (itemToRemove > -1) {
         unansweredQuestions.splice(itemToRemove)
     }
+
+    // disableQuestionBlock(questionId, chosenAnswer)
+
+    const lowestQuestionId = Math.min(...unansweredQuestions)
+    location.href = '#' + lowestQuestionId
+
+
+    if (!unansweredQuestions.length) {
+        showAnswer()
+    }
     
+}
+
+const showAnswer = () => {
+    let result
+    answers.forEach( answer => {
+        if (
+            chosenAnswers.includes(answer.combination[0]) +
+            chosenAnswers.includes(answer.combination[1]) +
+            chosenAnswers.includes(answer.combination[2])
+        ) {
+            result = answer
+        } else {
+            result = answers[0]
+        }
+    })
+
+    const answerBlock = document.createElement('div')
+    answerBlock.classList.add('result-block')
+
+    const answerTitle = document.createElement('h3')
+    answerTitle.textContent = result.text
+
+    const answerImage = document.createElement('img')
+    answerImage.setAttribute('src', result.image)
+    answerImage.setAttribute('alt', result.alt)
+
+    answerBlock.append(answerTitle, answerImage)
+
+    answerDisplay.append(answerBlock)
 }
